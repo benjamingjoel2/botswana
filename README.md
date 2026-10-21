@@ -1,0 +1,3 @@
+# Botswana
+
+Botswana travel project.
