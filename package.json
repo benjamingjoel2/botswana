@@ -1,0 +1,12 @@
+{
+  "name": "botswana-safaris-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static travel website for private, low-impact safaris in Botswana.",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node build.js && node serve.js",
+    "check": "node build.js && node scripts/check.js"
+  },
+  "engines": { "node": ">=18" }
+}
