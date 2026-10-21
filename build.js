@@ -67,7 +67,11 @@ fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
 const vars = Object.entries(config.palette)
   .map(([k, v]) => `  --${k}: ${v};`)
   .join('\n');
-const css = `:root {\n${vars}\n}\n` + fs.readFileSync(path.join(ASSETS, 'styles.css'), 'utf8');
+const fontVars = Object.entries(config.fonts)
+  .filter(([k]) => k !== 'href')
+  .map(([k, v]) => `  --font-${k}: ${v};`)
+  .join('\n');
+const css = `:root {\n${vars}\n${fontVars}\n}\n` + fs.readFileSync(path.join(ASSETS, 'styles.css'), 'utf8');
 fs.writeFileSync(path.join(OUT, 'assets', 'styles.css'), css);
 for (const f of fs.readdirSync(ASSETS)) {
   if (f !== 'styles.css') fs.copyFileSync(path.join(ASSETS, f), path.join(OUT, 'assets', f));

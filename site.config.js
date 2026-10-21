@@ -49,6 +49,14 @@ module.exports = {
     endpoint: '',
   },
 
+  // Typefaces, loaded from Google Fonts. `href` must load all three.
+  fonts: {
+    display: '"Instrument Serif", "Iowan Old Style", Georgia, serif',
+    body: '"Inter Tight", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+    mono: '"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace',
+    href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap',
+  },
+
   // Palette. Names are used as CSS custom properties: --sand, --ink, etc.
   palette: {
     sand: '#F3ECDF', // page background (Kalahari sand, light)
@@ -61,8 +69,13 @@ module.exports = {
     flood: '#1C5670', // floodwater blue: links, water
     floodLight: '#D4E3E8',
     ochre: '#8C4213', // ochre: highlights, small labels
-    ochreBright: '#B8691F', // ochre for large shapes only (not text)
+    ochreBright: '#BE7026', // ochre for large shapes only (not text)
     white: '#FFFFFF',
+    // Dark sections
+    night: '#151410', // background of dark bands and the footer
+    stone: '#ADA392', // secondary text on night
+    floodBright: '#6FB3CF', // water on night (chart tiles, accents)
+    grass: '#A9BC72', // green pans on night (chart tiles)
   },
 
   // Text/background pairs the CSS actually uses. The build fails if any pair
@@ -88,5 +101,11 @@ module.exports = {
     ['papyrus', 'papyrusLight', 4.5],
     ['ochreBright', 'sand', 3],
     ['dune', 'ink', 3],
+    ['sand', 'night', 4.5],
+    ['stone', 'night', 4.5],
+    ['floodBright', 'night', 4.5],
+    ['grass', 'night', 4.5],
+    ['ochreBright', 'night', 4.5],
+    ['ink', 'white', 4.5],
   ],
 };

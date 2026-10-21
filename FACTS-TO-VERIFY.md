@@ -79,6 +79,10 @@ Where things live: `src/data/destinations.js`, `src/data/months.js`,
 - [ ] "Pula" means rain; national greeting; motto on the coat of arms; name of the currency (used in the alternative brand story in `site.config.js`).
 - [ ] Botswana time is **UTC+2** (footer).
 
+- [ ] **"A day in a water camp"** on the home page: the times (05:45 wake-up, 06:30 activity, 10:30 brunch, 15:30 tea, 16:00 outing, 19:30 dinner) are a typical rhythm, not a specific camp's schedule.
+- [ ] Home page stats: "Jun–Aug" flood peak, "Dec–Mar" green pans, "20 kg" luggage.
+- [ ] Map coordinates shown as labels (e.g. Maun 19°58′S 23°26′E) are approximate.
+
 ## 6. Business details (placeholders)
 
 - [ ] Email, phone, WhatsApp, office location and hours in `site.config.js` are placeholders.

@@ -5,18 +5,20 @@ const NAV = [
   ['/destinations/', 'Destinations'],
   ['/journeys/', 'Journeys'],
   ['/when-to-go/', 'When to go'],
-  ['/flying/', 'Flying between camps'],
+  ['/flying/', 'Flying'],
   ['/stays/', 'Stays'],
   ['/journal/', 'Journal'],
   ['/about/', 'About'],
 ];
 
-function layout({ title, description, path, body, image, bodyClass = '' }) {
+// `overlay: true` puts the header over a full-bleed hero (light text on a
+// dark scrim) until the page scrolls; otherwise the header is solid.
+function layout({ title, description, path, body, image, overlay = false }) {
   const { brand, contact, siteUrl } = config;
   const fullTitle = path === '/' ? `${brand.name}: private, low-impact safaris in Botswana` : `${title} | ${brand.name}`;
   const desc = description || brand.tagline;
-  const navLink = ([href, label]) =>
-    html`<li><a href="${href}"${path.startsWith(href) ? raw(' aria-current="page"') : ''}>${label}</a></li>`;
+  const current = (href) => (path.startsWith(href) ? raw(' aria-current="page"') : '');
+  const tel = contact.phone.replace(/\s/g, '');
 
   return `<!doctype html>
 ${html`<html lang="en-GB">
@@ -31,55 +33,71 @@ ${html`<html lang="en-GB">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${siteUrl + path}">
 ${image ? html`<meta property="og:image" content="${image}">` : ''}
-<meta name="theme-color" content="${config.palette.papyrus}">
+<meta name="theme-color" content="${config.palette.night}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="${config.fonts.href}">
 <link rel="stylesheet" href="/assets/styles.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/assets/main.js" defer></script>
 </head>
-<body class="${bodyClass}">
+<body class="${overlay ? 'has-overlay' : ''}">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="wrap header-inner">
+<header class="site-header${overlay ? ' is-over' : ''}" data-header>
+  <div class="header-inner">
     <a class="logo" href="/">${raw(logoMark())}<span>${brand.name}</span></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    <nav id="site-nav" class="site-nav" aria-label="Main">
-      <ul>
-        ${NAV.map(navLink)}
-        <li><a class="btn btn-small" href="/enquire/"${path.startsWith('/enquire/') ? raw(' aria-current="page"') : ''}>Enquire</a></li>
-      </ul>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>${NAV.map(([href, label]) => html`<li><a href="${href}"${current(href)}>${label}</a></li>`)}</ul>
     </nav>
+    <a class="header-cta" href="/enquire/"${current('/enquire/')}>Enquire</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-text">Menu</span></button>
   </div>
 </header>
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Menu">
+    <ol>
+      ${NAV.map(([href, label], i) => html`<li><a href="${href}"${current(href)}><span class="mono">${String(i + 1).padStart(2, '0')}</span>${label}</a></li>`)}
+      <li><a href="/enquire/"${current('/enquire/')}><span class="mono">08</span>Enquire</a></li>
+    </ol>
+  </nav>
+  <p class="menu-contact mono"><a href="mailto:${contact.email}">${contact.email}</a><br><a href="tel:${tel}">${contact.phone}</a></p>
+</div>
 <main id="main">
 ${raw(String(body))}
 </main>
 <footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div>
-      <p class="footer-brand">${brand.name}</p>
-      <p>${brand.tagline}</p>
+  <div class="wrap">
+    <div class="footer-top">
+      <p class="footer-claim">${brand.tagline}</p>
+      <a class="btn btn-light" href="/enquire/"><span>Start an enquiry</span><span class="btn-disc" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
     </div>
-    <div>
-      <h2 class="footer-h">Contact</h2>
-      <p><a href="mailto:${contact.email}">${contact.email}</a><br>
-      <a href="tel:${contact.phone.replace(/\s/g, '')}">${contact.phone}</a><br>
-      ${contact.office}<br>
-      <span class="muted">${contact.hours}</span></p>
-    </div>
-    <div>
-      <h2 class="footer-h">Explore</h2>
-      <ul class="footer-links">
-        ${NAV.map(([href, label]) => html`<li><a href="${href}">${label}</a></li>`)}
-        <li><a href="/enquire/">Enquire</a></li>
-        <li><a href="/credits/">Photo credits</a></li>
-      </ul>
+    <div class="footer-grid">
+      <div>
+        <h2 class="footer-h mono">Contact</h2>
+        <p><a href="mailto:${contact.email}">${contact.email}</a><br>
+        <a href="tel:${tel}">${contact.phone}</a><br>
+        ${contact.whatsapp ? html`<a href="https://wa.me/${contact.whatsapp}">WhatsApp</a><br>` : ''}
+        ${contact.office}</p>
+        <p class="footer-muted">${contact.hours}</p>
+      </div>
+      <div>
+        <h2 class="footer-h mono">Explore</h2>
+        <ul class="footer-links">${NAV.map(([href, label]) => html`<li><a href="${href}">${label}</a></li>`)}</ul>
+      </div>
+      <div>
+        <h2 class="footer-h mono">Small print</h2>
+        <ul class="footer-links">
+          <li><a href="/enquire/">Enquire</a></li>
+          <li><a href="/credits/">Photo credits</a></li>
+        </ul>
+        <p class="footer-muted">Sample itineraries and placeholder camp names are for illustration; details are confirmed when you book.</p>
+      </div>
     </div>
   </div>
-  <div class="wrap footer-small">
-    <p>© ${new Date().getFullYear()} ${brand.name}. Sample itineraries and placeholder camp names are for illustration; details are confirmed when you book.</p>
-  </div>
+  <p class="footer-mark" aria-hidden="true">${brand.name}</p>
+  <div class="wrap footer-small mono"><p>© ${new Date().getFullYear()} ${brand.name}</p><p>${brand.shortName} · Botswana</p></div>
 </footer>
 </body>
 </html>`}`;

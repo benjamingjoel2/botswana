@@ -39,6 +39,8 @@ Everything brand-specific is in **`site.config.js`**:
 - `contact`: email, phone, WhatsApp, office, hours (placeholders for now).
 - `siteUrl`: the live domain.
 - `enquiry.endpoint`: where the enquiry form posts (see below).
+- `fonts`: display, body and mono typefaces plus the Google Fonts URL that
+  loads them (Instrument Serif, Inter Tight and IBM Plex Mono by default).
 - `palette`: the colours. They become CSS custom properties (`--sand`,
   `--papyrus`, `--flood`, `--ochre`...) and are also used for the favicon and
   map.
@@ -58,7 +60,8 @@ Everything brand-specific is in **`site.config.js`**:
 | Photos and credits | `src/data/photos.js` |
 | Page layouts and page text | `src/templates/pages.js` |
 | Header, footer, `<head>` | `src/templates/layout.js` |
-| Chooser, map, cards, luggage rule | `src/templates/components.js` |
+| Heroes, cards, chooser, luggage rule | `src/templates/components.js` |
+| Route map | `src/templates/map.js` |
 | Styles | `src/assets/styles.css` |
 | Menu, chooser, map tabs, form | `src/assets/main.js` |
 
@@ -117,7 +120,11 @@ A static site can't send email by itself. Two options:
   markup in the built pages.
 - The palette is checked against WCAG AA on every build.
 - The pages were also tested with axe-core (WCAG 2.1 AA rules) at mobile and
-  desktop widths with no violations. Text is never placed directly on photos.
+  desktop widths with no violations.
+- Text over photos always sits on a dark scrim. The contrast of every overlay
+  label was measured against the real photo pixels behind it (worst case
+  above 4.5:1 for small text, 3:1 for large headings). If you change a hero
+  photo or a scrim gradient in `styles.css`, re-check it.
 
 ## Before launch
 

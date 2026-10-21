@@ -2,14 +2,45 @@
 (function () {
   'use strict';
 
-  // Mobile menu
+  // Header: transparent over a photo hero, solid once the page scrolls.
+  var header = document.querySelector('[data-header]');
+  if (header && document.body.classList.contains('has-overlay')) {
+    var onScroll = function () {
+      header.classList.toggle('is-over', window.scrollY < 40);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // Full-screen menu on small screens.
   var toggle = document.querySelector('.nav-toggle');
-  var nav = document.getElementById('site-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
+  var menu = document.getElementById('menu');
+  if (toggle && menu) {
+    var setMenu = function (open) {
+      menu.hidden = !open;
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.nav-toggle-text').textContent = open ? 'Close' : 'Menu';
+      document.body.classList.toggle('menu-open', open);
+      if (open) menu.querySelector('a').focus();
+    };
+    toggle.addEventListener('click', function () { setMenu(menu.hidden); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) { setMenu(false); toggle.focus(); }
     });
+  }
+
+  // Reveal on scroll. Content is visible without JS, and is shown anyway
+  // after a moment if IntersectionObserver is missing.
+  var reveal = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    reveal.forEach(function (el) { io.observe(el); });
+  } else {
+    reveal.forEach(function (el) { el.classList.add('is-in'); });
   }
 
   // "Water or dry?" chooser: one month visible at a time.
