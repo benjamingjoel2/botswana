@@ -19,6 +19,7 @@ module.exports = [
       ] },
       { h: 'The trade-offs' },
       { p: 'The model is expensive for visitors, and it has been criticised for keeping local people and lower-budget travellers out. Community-based concessions, where villages lease their land to operators and share the income, are one answer. When we choose camps, we ask how much stays in Botswana: staff, ownership, community fees.' },
+      { p: 'The policy is also changing. A revised national tourism policy in 2021 aims to widen access and diversify beyond the high-value model, so expect more variety in the years ahead.' },
       { p: 'For a traveller, the result is simple to describe: quiet. You might share a sighting with one other vehicle, or none.' },
     ],
   },
@@ -34,7 +35,7 @@ module.exports = [
       { list: [
         'Usually 20 kg per person in total, including hand luggage and camera gear. Some routes and operators allow less.',
         'A soft bag with no wheels and no rigid frame, so it can be squeezed into the pod.',
-        'Roughly 25 cm high, 30 cm wide and 62 cm long. Check the exact size with us before you buy a bag.',
+        'Roughly 35 cm high, 30 cm wide and 70 cm long. Operators differ, so check the exact size with us before you buy a bag.',
         'Extra weight can sometimes be carried by buying an extra seat, if booked in advance.',
       ] },
       { h: 'A list that works' },
@@ -60,7 +61,7 @@ module.exports = [
       { p: 'The Okavango is often called a flood that arrives in the dry season. The reason is distance and gradient. Rain falls on the Angolan highlands from about November to March. The water flows down the Cubango and Cuito rivers into Namibia and then Botswana, and then spreads very slowly across an almost flat fan of sand.' },
       { h: 'A rough calendar' },
       { list: [
-        'March to April: the flood enters the Panhandle in the north-west.',
+        'March to April: the flood peaks in the Panhandle in the north-west.',
         'May to June: it reaches the central Delta and spreads across the floodplains.',
         'July to August: high water usually reaches the lower Delta and Maun.',
         'September to November: the water recedes as heat and evaporation increase.',

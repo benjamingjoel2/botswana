@@ -8,6 +8,44 @@ and note the source and date.
 Most of the site avoids exact figures on purpose (no park fee amounts, no
 flight prices). If you add figures, add them to this list too.
 
+## Fact-check pass, 21 October 2026
+
+A first check was made using web search results (snippets and summaries of
+the pages below). The Wayback Machine refused connections during the check, so
+**no page was read in full**. Treat "consistent" as a strong hint, not a
+final tick: confirm each item against the primary page before launch.
+
+**Corrected on the site after this pass**
+
+| Item | Was | Now | Source |
+| --- | --- | --- | --- |
+| Soft-bag size | about 25 × 30 × 62 cm | about 30 × 35 × 70 cm (W × H × L), "operators differ" | Mack Air reservations T&Cs 2023 (mackair.co.bw, PDF); Wilderness Air (wildernessdestinations.com) |
+| Tsodilo nickname | "UNESCO describes them as the Louvre of the Desert" | "have been called... a phrase quoted in UNESCO's listing"; first World Heritage Site in Botswana, 2001 | whc.unesco.org/en/list/1021 |
+| Nxai Pan | "managed together with" Makgadikgadi | the parks border each other and are often visited together | en.wikivoyage.org/wiki/Nxai_Pan_National_Park (no source found for joint management) |
+| Flood in the Panhandle, March–April | "enters" | "peaks" | africansafaris.co.nz flood explainer; etd.uwc.ac.za/handle/11394/4677 |
+| Okavango Delta (added) | — | 1,000th site on UNESCO's World Heritage List, 2014 | whc.unesco.org/en/news/1159 |
+| High value, low volume (added) | — | 2021 revised tourism policy aims to widen access | citedrive.com summary of the 2021 policy; 1990 policy per bulletinofgeography.umk.pl/26_2014/01_Saarinen.html |
+| Moremi | "named after their chief" | "named after their chief, Moremi III" | Lonely Planet; h2g2 A822876 (gazetted 1965) |
+
+**Consistent with sources (still confirm)**
+
+- No night drives or off-road driving in national parks and reserves; allowed outside them: Botswana Tourism, botswanatourism.co.bw/experience/game-viewing-drive
+- 20 kg total including hand luggage; soft bags, no frames; extra seat bookable (Mack Air: +30 kg): Mack Air T&Cs, Wilderness Air
+- Flood peaks June–August in the central and lower Delta; maximum flooded area around August: UWC thesis, operator explainers
+- Maun temperatures: within the range of climate-zone.com and weatherspark.com (minimums in June/July may be 1–3°C low)
+- Baines' Baobabs painted by Thomas Baines in May 1862: discoverafrica.com
+- Savute Channel: dry for long periods, flowed 1957–1982, returned around 2008: wildernessdestinations.com journal
+- Tsodilo: over 4,500 paintings, four hills, sacred to San and Hambukushu, museum and airstrip: UNESCO, tracks4africa
+- CKGR: 2006 High Court ruling on residents' rights: thenewhumanitarian.org, nbcnews.com
+- Quad biking on the pans still offered by some camps (2025): 4x4afrika.com
+
+**Still open**
+
+- **Park fees.** Secondary guides quote P270 per day for non-residents in Category A parks (Chobe, Moremi) and mention a revision from 1 April 2026; sources conflict. The site still gives no amounts. Get the DWNP schedule.
+- **Tourism Development Levy.** Announced 2017 (USD 30), withdrawn, then reportedly reintroduced; current status unknown. Not on the site.
+- **KAZA UNIVISA** for Victoria Falls day trips: reported active in 2025; check per nationality.
+- Wildlife timing items (lambing, denning, migrant birds), camp closures, airstrip names: no conflict found, not checked against a primary source.
+
 Where things live: `src/data/destinations.js`, `src/data/months.js`,
 `src/data/journeys.js`, `src/data/journal.js`, `src/templates/components.js`
 (luggage rule), `src/templates/pages.js` (page text).
@@ -51,7 +89,7 @@ Where things live: `src/data/destinations.js`, `src/data/months.js`,
 
 - [ ] **20 kg per person, total**, including hand luggage and camera equipment. Check with the charter operators you use; some routes or aircraft allow less (often quoted as 15 kg on some services).
 - [ ] **Soft bags only**, no wheels, no rigid frame.
-- [ ] **Bag size about 25 × 30 × 62 cm.** Operators publish slightly different sizes.
+- [ ] **Bag size about 30 × 35 × 70 cm** (corrected from 25 × 30 × 62 on 21 Oct 2026; Mack Air and Wilderness Air). Operators publish slightly different sizes.
 - [ ] **Extra seat** can be bought for extra luggage, if booked in advance.
 - [ ] Passengers are **weighed with luggage** at check-in.
 - [ ] Aircraft are usually single-engine (e.g. Cessna 206/208) with **about 5–12 passenger seats**.
@@ -66,7 +104,7 @@ Where things live: `src/data/destinations.js`, `src/data/months.js`,
 - [ ] **Moremi Game Reserve** set aside in the **1960s** at the initiative of the **Batawana** community and named after their chief (Moremi III).
 - [ ] Moremi includes **Chief's Island**.
 - [ ] **Baines' Baobabs** painted by **Thomas Baines in 1862**.
-- [ ] **Nxai Pan National Park** is managed together with Makgadikgadi Pans National Park.
+- [ ] **Nxai Pan National Park** borders Makgadikgadi Pans National Park (site no longer claims joint management).
 - [ ] The **Savute Channel** has stopped and restarted flowing over long periods (decades).
 - [ ] **Gubatsa Hills** at Savuti have San rock paintings.
 - [ ] **Linyanti** runs along the border with Namibia's Zambezi region (formerly Caprivi).

@@ -28,7 +28,7 @@ module.exports = [
   {
     m: 3, name: 'March', short: 'Mar', water: 2, pans: 4, rain: 3, temp: '18–31°C',
     headline: 'Rains easing; the flood begins upstream',
-    water_note: 'Floodwater is entering the Panhandle in the north-west but has not reached the central Delta.',
+    water_note: 'Floodwater is peaking in the Panhandle in the north-west but has not reached the central Delta.',
     dry_note: 'Grass is tall and the pans are still green; wildlife is still on the pans in good rain years.',
     good: ['Nxai Pan', 'Makgadikgadi', 'Quiet camps between seasons'],
     watch: ['Tall grass can hide wildlife'],

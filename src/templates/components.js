@@ -263,7 +263,7 @@ function luggageRule() {
     <ul class="luggage-list">
       <li><strong>Total weight,</strong> including hand luggage, cameras and lenses.</li>
       <li><strong>Soft bag only:</strong> no wheels, no rigid frame, no hard case. It has to squeeze into a small pod or hold.</li>
-      <li><strong>About 25 × 30 × 62 cm.</strong> We send the exact size for your aircraft before you buy a bag.</li>
+      <li><strong>About 30 × 35 × 70 cm</strong> (width × height × length). Operators differ, so we send the exact size for your aircraft before you buy a bag.</li>
       <li><strong>Need more?</strong> An extra seat can sometimes be booked for gear, in advance.</li>
     </ul>
     <p class="small">Limits are set by the air charter operators and can be lower on some routes. <a href="/journal/packing-for-20-kg/">How to pack for 20 kg</a></p>

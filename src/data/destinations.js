@@ -14,6 +14,7 @@ module.exports = [
     intro: [
       'The Okavango River rises in the Angolan highlands and never reaches the sea. Rain that fell months earlier and hundreds of kilometres away spreads slowly across the Kalahari sand and fills the Delta just as the rest of Botswana is drying out. That timing is the reason a winter safari here looks the way it does: open water, green islands and wildlife that has walked in from the dry country.',
       'Most of the Delta is divided into large private concessions, each with a handful of small camps. That is where the low-volume model is most visible: you can spend a morning in a mokoro and not see another boat.',
+      'In 2014 the Okavango Delta became the 1,000th site inscribed on UNESCO\'s World Heritage List.',
     ],
     feel: 'Water camps, slow mornings by mokoro, walks on islands with a guide.',
     activities: [
@@ -40,7 +41,7 @@ module.exports = [
     airstrip: 'Xakanaxa and Khwai area airstrips, or by road from Maun',
     summary: 'The protected eastern heart of the Delta, where floodplain meets mopane woodland. Some of the densest wildlife in the country.',
     intro: [
-      'Moremi was set aside in the 1960s at the initiative of the local Batawana community and is named after their chief. It covers a large part of the eastern Delta, including Chief\'s Island, and mixes permanent water with dry land, so it works in more months than a purely water-based area.',
+      'Moremi was set aside in the 1960s at the initiative of the local Batawana community and is named after their chief, Moremi III. It covers a large part of the eastern Delta, including Chief\'s Island, and mixes permanent water with dry land, so it works in more months than a purely water-based area.',
       'Because Moremi is a public reserve, it sees more vehicles than a private concession, and park rules apply: no off-road driving and no night drives. We use it carefully, often staying in the private areas on its edges (such as Khwai) and visiting the reserve by day.',
     ],
     feel: 'Floodplains, lagoons and woodland; big game on land, with water close by.',
@@ -162,7 +163,7 @@ module.exports = [
     airstrip: 'Small airstrip near the park, or by road from Maun',
     summary: 'Grass-covered fossil pans and Baines\' Baobabs. At its best in the rains, when zebra, springbok and their predators gather.',
     intro: [
-      'Nxai Pan National Park sits just north of the Makgadikgadi and is now managed together with it. Its pans are grassed rather than salt, so after the summer rains they fill with grazers and the cats that follow them.',
+      'Nxai Pan National Park sits just north of the Makgadikgadi Pans National Park; the two parks border each other and are often visited together. Its pans are grassed rather than salt, so after the summer rains they fill with grazers and the cats that follow them.',
       'At its southern edge stand Baines\' Baobabs, a group of very old trees painted by Thomas Baines in 1862 and still recognisable today.',
     ],
     feel: 'Green-season game in an open landscape; a classic stop between the Delta and the pans.',
@@ -204,7 +205,7 @@ module.exports = [
     airstrip: 'Tsodilo airstrip for charter flights, or by road from the Okavango Panhandle',
     summary: 'A UNESCO World Heritage Site with thousands of rock paintings, sacred to the San and Hambukushu peoples.',
     intro: [
-      'Four quartzite hills rise from the flat sand of north-west Botswana. They hold a very large concentration of rock art and have been a place of spiritual importance for a very long time. UNESCO describes them as the "Louvre of the Desert".',
+      'Four quartzite hills rise from the flat sand of north-west Botswana. They hold a very large concentration of rock art and have been a place of spiritual importance for a very long time. They have been called the "Louvre of the Desert", a phrase quoted in UNESCO\'s World Heritage listing, and in 2001 became Botswana\'s first World Heritage Site.',
       'This is a cultural visit rather than a wildlife one. We pair it with the Okavango Panhandle, where the river enters Botswana.',
     ],
     feel: 'Rock art, local guides and the story of people in the Kalahari.',
