@@ -8,8 +8,6 @@ const { routeMap, legTable, legs, place, bySlug } = require('./map');
 
 // ---------------------------------------------------------------- photos ---
 
-const UTM = `utm_source=${encodeURIComponent(config.brand.name.toLowerCase().replace(/\s+/g, '_'))}&utm_medium=referral`;
-const withUtm = (url) => url + (url.includes('?') ? '&' : '?') + UTM;
 
 function imgUrl(src, w, h) {
   const p = `auto=format&fit=crop&w=${w}&q=72` + (h ? `&h=${h}` : '');
@@ -21,10 +19,6 @@ function firstPhoto(keys = []) {
   return [].concat(keys).map((k) => photos[k]).find(Boolean);
 }
 
-function credit(p) {
-  return html`Photo: <a href="${withUtm(p.profile)}">${p.photographer}</a> / <a href="${withUtm('https://unsplash.com/')}">Unsplash</a>. ${p.location}`;
-}
-
 function img(p, { sizes = '100vw', eager = false, cls = '' } = {}) {
   const widths = [480, 800, 1200, 1800, 2400];
   const srcset = widths.map((w) => `${imgUrl(p.src, w)} ${w}w`).join(', ');
@@ -32,14 +26,13 @@ function img(p, { sizes = '100vw', eager = false, cls = '' } = {}) {
     ${eager ? raw('fetchpriority="high"') : raw('loading="lazy"')} decoding="async">`;
 }
 
-// Responsive photo with credit. When no verified photo exists for a place we
+// Responsive photo. When no verified photo exists for a place we
 // draw an illustration instead of using a photo from somewhere else.
-function photo(keys, { sizes = '100vw', ratio = '3/2', eager = false, cls = '', kind = 'water', caption = true } = {}) {
+function photo(keys, { sizes = '100vw', ratio = '3/2', eager = false, cls = '', kind = 'water' } = {}) {
   const p = firstPhoto(keys);
   if (!p) return illustration(kind, cls, ratio);
   return html`<figure class="photo ${cls}" style="--ratio:${ratio}">
   ${img(p, { sizes, eager })}
-  ${caption ? html`<figcaption>${credit(p)}</figcaption>` : ''}
 </figure>`;
 }
 
@@ -100,7 +93,6 @@ function hero({ photo: keys, eyebrow, title, lede, meta, cls = '', actions }) {
       ${actions || ''}
     </div>
   </div>
-  ${p ? html`<p class="hero-credit">${credit(p)}</p>` : ''}
 </section>`;
 }
 
@@ -276,8 +268,6 @@ module.exports = {
   img,
   firstPhoto,
   imgUrl,
-  credit,
-  withUtm,
   btn,
   arrow,
   label,

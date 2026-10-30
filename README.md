@@ -36,11 +36,15 @@ Everything brand-specific is in **`site.config.js`**:
 - `brand`: name, short name, tagline and the story behind the name. The
   alternative brand ("Pula Safaris") is kept under `brand.alternative`; copy
   its values into the main fields to switch.
-- `contact`: email, phone, WhatsApp, office, hours (placeholders for now).
+- `contact`: email (`mokorojourneys@tourground.com`), business address
+  (InnoSpace, The Hub @ iTowers, Gaborone) and hours. No phone, WhatsApp or
+  social links by owner decision.
 - `siteUrl`: the live domain.
 - `enquiry.endpoint`: where the enquiry form posts (see below).
-- `fonts`: display, body and mono typefaces plus the Google Fonts URL that
-  loads them (Instrument Serif, Inter Tight and IBM Plex Mono by default).
+- `fonts`: display, body and mono typefaces (Instrument Serif, Inter Tight and
+  IBM Plex Mono), self-hosted from `src/assets/fonts/` with `@font-face` rules
+  in `src/assets/fonts.css` (only the weights the CSS uses), plus the font
+  files to preload.
 - `palette`: the colours. They become CSS custom properties (`--sand`,
   `--papyrus`, `--flood`, `--ochre`...) and are also used for the favicon and
   map.
@@ -88,8 +92,9 @@ in several sizes (`srcset`), as Unsplash's guidelines ask.
 its Unsplash page, and only photos under the free Unsplash License (not
 Unsplash+). To add one, open its Unsplash page, check the location, add an
 entry to `photos.js` (image ID, page, photographer, username, location as
-shown on the page, your own alt text), then reference its key. The credit
-caption and the `/credits/` page are generated automatically. If a place has
+shown on the page, your own alt text), then reference its key. The Unsplash
+License does not require attribution, so no credit captions are shown (owner
+decision); the photographer and page stay recorded in `photos.js`. If a place has
 no matching photo, the site shows a drawn illustration rather than a photo of
 somewhere else.
 
@@ -129,7 +134,19 @@ A static site can't send email by itself. Two options:
 ## Before launch
 
 Read **`FACTS-TO-VERIFY.md`**. It lists every fact, rule, season and
-placeholder on the site that needs checking against a primary source.
+placeholder on the site that needs checking against a primary source. Also:
+
+- The legal pages (`/privacy/`, `/terms/`, `/cookies/`) are complete drafts;
+  have a lawyer review them.
+- The camp names in `src/data/stays.js` are placeholders, labelled on the site.
+  Real camps must show that real property (see `IMAGES-NEEDED.md`).
+
+## Performance
+
+Fonts are self-hosted and the display face is preloaded; the hero photo is
+preloaded from its `srcset`; CSS and JS are fingerprinted (`styles.<hash>.css`)
+so `vercel.json` can cache them for a year; everything below the fold is
+lazy-loaded.
 
 ## Project layout
 

@@ -3,6 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const config = require('./site.config');
 const { checkPalette } = require('./src/lib/contrast');
 const { layout, logoMark } = require('./src/templates/layout');
@@ -39,12 +40,49 @@ const list = [
   ...journal.map(pages.articlePage),
   pages.enquire(),
   pages.thanks(),
+  pages.privacyPage(),
+  pages.termsPage(),
+  pages.cookiesPage(),
   pages.notFound(),
 ];
 
-// 3. Render.
+// 3. Assets first, so pages can link to their fingerprinted names.
+//    CSS = palette custom properties + self-hosted @font-face rules + styles, lightly minified.
+//    Fingerprinted files can be cached for a year (see vercel.json).
 fs.rmSync(OUT, { recursive: true, force: true });
-fs.mkdirSync(OUT, { recursive: true });
+fs.mkdirSync(path.join(OUT, 'assets', 'fonts'), { recursive: true });
+const vars = Object.entries(config.palette)
+  .map(([k, v]) => `  --${k}: ${v};`)
+  .join('\n');
+const fontVars = Object.entries(config.fonts)
+  .filter(([k]) => !['href', 'preload'].includes(k))
+  .map(([k, v]) => `  --font-${k}: ${v};`)
+  .join('\n');
+const minifyCss = (css) =>
+  css
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\n\s+/g, '\n')
+    .replace(/\n{2,}/g, '\n')
+    .trim() + '\n';
+const css = minifyCss(
+  `:root {\n${vars}\n${fontVars}\n}\n` +
+    fs.readFileSync(path.join(ASSETS, 'fonts.css'), 'utf8') +
+    fs.readFileSync(path.join(ASSETS, 'styles.css'), 'utf8')
+);
+const fingerprint = (name, body) => {
+  const hash = crypto.createHash('sha256').update(body).digest('hex').slice(0, 10);
+  const [base, ext] = [name.slice(0, name.lastIndexOf('.')), name.slice(name.lastIndexOf('.'))];
+  const file = `${base}.${hash}${ext}`;
+  fs.writeFileSync(path.join(OUT, 'assets', file), body);
+  return `/assets/${file}`;
+};
+const js = fs.readFileSync(path.join(ASSETS, 'main.js'), 'utf8');
+config.assets = { css: fingerprint('styles.css', css), js: fingerprint('main.js', js) };
+for (const f of fs.readdirSync(path.join(ASSETS, 'fonts'))) {
+  fs.copyFileSync(path.join(ASSETS, 'fonts', f), path.join(OUT, 'assets', 'fonts', f));
+}
+
+// 4. Render.
 
 const write = (urlPath, content) => {
   const file = urlPath.endsWith('.html') ? path.join(OUT, urlPath) : path.join(OUT, urlPath, 'index.html');
@@ -53,29 +91,12 @@ const write = (urlPath, content) => {
 };
 
 const rendered = list.map((p) => ({ ...p, out: layout({ ...p, body: p.body }) }));
-
-// The credits page lists every photo that appears on another page.
 const allHtml = rendered.map((p) => p.out).join('\n');
 const used = Object.keys(photos).filter((k) => allHtml.includes(photos[k].src));
-const creditsPage = pages.credits(used);
-rendered.push({ ...creditsPage, out: layout(creditsPage) });
 
 for (const p of rendered) write(p.path, p.out);
 
-// 4. Assets. CSS gets the palette injected as custom properties.
-fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
-const vars = Object.entries(config.palette)
-  .map(([k, v]) => `  --${k}: ${v};`)
-  .join('\n');
-const fontVars = Object.entries(config.fonts)
-  .filter(([k]) => k !== 'href')
-  .map(([k, v]) => `  --font-${k}: ${v};`)
-  .join('\n');
-const css = `:root {\n${vars}\n${fontVars}\n}\n` + fs.readFileSync(path.join(ASSETS, 'styles.css'), 'utf8');
-fs.writeFileSync(path.join(OUT, 'assets', 'styles.css'), css);
-for (const f of fs.readdirSync(ASSETS)) {
-  if (f !== 'styles.css') fs.copyFileSync(path.join(ASSETS, f), path.join(OUT, 'assets', f));
-}
+// 5. Favicon.
 // Favicon: the logo mark with palette colours filled in, so it follows the brand.
 const favicon = logoMark()
   .replace(/var\(--(\w+)\)/g, (_, k) => config.palette[k])
@@ -83,7 +104,7 @@ const favicon = logoMark()
   .replace(/ aria-hidden="true" focusable="false"/, '');
 fs.writeFileSync(path.join(OUT, 'assets', 'favicon.svg'), favicon);
 
-// 5. sitemap.xml and robots.txt
+// 6. sitemap.xml and robots.txt
 const urls = rendered.filter((p) => !p.path.endsWith('.html') && !p.path.includes('/thanks/'));
 fs.writeFileSync(
   path.join(OUT, 'sitemap.xml'),

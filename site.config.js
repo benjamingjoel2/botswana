@@ -27,18 +27,18 @@ module.exports = {
     },
   },
 
-  // Placeholder contact details. Replace before launch.
+  // Contact details. One email address per brand ({brand}@tourground.com); no
+  // phone, WhatsApp or social links (owner decision). The business address is
+  // InnoSpace at iTowers, Gaborone's premium coworking space.
   contact: {
-    email: 'hello@example.com',
-    phone: '+267 00 000 000',
-    whatsapp: '', // e.g. '26700000000' (digits only). Leave empty to hide.
-    office: 'Maun, Botswana',
+    email: 'mokorojourneys@tourground.com',
+    office: 'InnoSpace, Ground Floor, The Hub @ iTowers, CBD Plot 54368, Gaborone, Botswana',
     hours: 'Monday to Friday, 08:00 to 17:00 (Botswana time, UTC+2)',
   },
 
   // Public URL of the deployed site, no trailing slash. Used for canonical
   // links and sitemap.xml.
-  siteUrl: 'https://mokoro-journeys.vercel.app',
+  siteUrl: 'https://mokorojourneys.tourground.com',
 
   // Enquiry form. A static site cannot send email by itself, so either:
   //  - set `endpoint` to a form service URL that accepts a POST
@@ -49,12 +49,18 @@ module.exports = {
     endpoint: '',
   },
 
-  // Typefaces, loaded from Google Fonts. `href` must load all three.
+  // Typefaces, self-hosted from src/assets/fonts (latin + latin-ext woff2, only
+  // the weights the CSS uses; @font-face rules in src/assets/fonts.css).
+  // `preload` lists the font files needed above the fold on every page.
   fonts: {
     display: '"Instrument Serif", "Iowan Old Style", Georgia, serif',
     body: '"Inter Tight", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
     mono: '"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace',
-    href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap',
+    preload: [
+      '/assets/fonts/instrument-serif-400-latin.woff2',
+      '/assets/fonts/inter-tight-latin.woff2',
+      '/assets/fonts/ibm-plex-mono-500-latin.woff2',
+    ],
   },
 
   // Palette. Names are used as CSS custom properties: --sand, --ink, etc.
