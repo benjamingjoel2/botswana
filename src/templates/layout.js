@@ -18,7 +18,6 @@ function layout({ title, description, path, body, image, overlay = false }) {
   const fullTitle = path === '/' ? `${brand.name}: private, low-impact safaris in Botswana` : `${title} | ${brand.name}`;
   const desc = description || brand.tagline;
   const current = (href) => (path.startsWith(href) ? raw(' aria-current="page"') : '');
-  const tel = contact.phone.replace(/\s/g, '');
 
   return `<!doctype html>
 ${html`<html lang="en-GB">
@@ -36,12 +35,11 @@ ${image ? html`<meta property="og:image" content="${image}">` : ''}
 <meta name="theme-color" content="${config.palette.night}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="${config.fonts.href}">
-<link rel="stylesheet" href="/assets/styles.css">
+${heroPreload(String(body))}
+${config.fonts.preload.map((f) => html`<link rel="preload" href="${f}" as="font" type="font/woff2" crossorigin>`)}
+<link rel="stylesheet" href="${config.assets.css}">
 <script>document.documentElement.classList.add('js')</script>
-<script src="/assets/main.js" defer></script>
+<script src="${config.assets.js}" defer></script>
 </head>
 <body class="${overlay ? 'has-overlay' : ''}">
 <a class="skip" href="#main">Skip to content</a>
@@ -62,7 +60,7 @@ ${image ? html`<meta property="og:image" content="${image}">` : ''}
       <li><a href="/enquire/"${current('/enquire/')}><span class="mono">08</span>Enquire</a></li>
     </ol>
   </nav>
-  <p class="menu-contact mono"><a href="mailto:${contact.email}">${contact.email}</a><br><a href="tel:${tel}">${contact.phone}</a></p>
+  <p class="menu-contact mono"><a href="mailto:${contact.email}">${contact.email}</a></p>
 </div>
 <main id="main">
 ${raw(String(body))}
@@ -77,8 +75,6 @@ ${raw(String(body))}
       <div>
         <h2 class="footer-h mono">Contact</h2>
         <p><a href="mailto:${contact.email}">${contact.email}</a><br>
-        <a href="tel:${tel}">${contact.phone}</a><br>
-        ${contact.whatsapp ? html`<a href="https://wa.me/${contact.whatsapp}">WhatsApp</a><br>` : ''}
         ${contact.office}</p>
         <p class="footer-muted">${contact.hours}</p>
       </div>
@@ -89,8 +85,9 @@ ${raw(String(body))}
       <div>
         <h2 class="footer-h mono">Small print</h2>
         <ul class="footer-links">
-          <li><a href="/enquire/">Enquire</a></li>
-          <li><a href="/credits/">Photo credits</a></li>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="/terms/">Booking terms</a></li>
+          <li><a href="/cookies/">Cookie policy</a></li>
         </ul>
         <p class="footer-muted">Sample itineraries and placeholder camp names are for illustration; details are confirmed when you book.</p>
       </div>
@@ -101,6 +98,18 @@ ${raw(String(body))}
 </footer>
 </body>
 </html>`}`;
+}
+
+// Preload the page's hero (the one image marked fetchpriority="high") so the
+// browser starts downloading it before it has parsed the body.
+function heroPreload(body) {
+  const tag = body.match(/<img [^>]*fetchpriority="high"[^>]*>/);
+  if (!tag) return '';
+  const attr = (n) => (tag[0].match(new RegExp(`\\s${n}="([^"]*)"`)) || [])[1];
+  const srcset = attr('srcset');
+  const sizes = attr('sizes');
+  if (!srcset) return '';
+  return raw(`<link rel="preload" as="image" href="${attr('src')}" imagesrcset="${srcset}" imagesizes="${sizes || '100vw'}" fetchpriority="high">`);
 }
 
 // A simple mokoro mark: a canoe, a poler and the waterline.
