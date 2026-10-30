@@ -1,0 +1,118 @@
+// Month-by-month data for the "Water or dry?" chooser.
+// `water` = how full the Okavango Delta usually is (0-5).
+// `pans`  = how green and busy the pans and Kalahari usually are (0-5).
+// `rain`  = how much rain usually falls in northern Botswana (0-5).
+// These are typical patterns, not forecasts: the flood depends on rain in
+// Angola and varies year to year. Temperatures are rough ranges for Maun.
+// See FACTS-TO-VERIFY.md.
+
+module.exports = [
+  {
+    m: 1, name: 'January', short: 'Jan', water: 1, pans: 5, rain: 5, temp: '20–32°C',
+    headline: 'Green season: the pans at their best',
+    water_note: 'The Delta is at its lowest; channels are shallow and mokoro trips are limited in many areas.',
+    dry_note: 'Zebra and wildebeest on the Makgadikgadi and Nxai Pan grasslands; springbok and gemsbok in the Kalahari valleys, many with young.',
+    good: ['Makgadikgadi zebra', 'Nxai Pan', 'Central Kalahari', 'Birding (migrants present)'],
+    watch: ['Afternoon thunderstorms', 'Some camps close for maintenance', 'Pans can be impassable when wet'],
+    go: ['makgadikgadi-pans', 'nxai-pan', 'central-kalahari'],
+  },
+  {
+    m: 2, name: 'February', short: 'Feb', water: 1, pans: 5, rain: 5, temp: '20–31°C',
+    headline: 'Rains, calves and big skies',
+    water_note: 'Delta water low; land-based camps and game drives work better than water activities.',
+    dry_note: 'Peak green season on the pans and in the Kalahari. Predators follow the grazers.',
+    good: ['Green-season photography', 'Kalahari valleys', 'Lower green-season rates at many camps'],
+    watch: ['Heavy rain some days', 'Roads in the Kalahari can be difficult'],
+    go: ['central-kalahari', 'nxai-pan', 'makgadikgadi-pans'],
+  },
+  {
+    m: 3, name: 'March', short: 'Mar', water: 2, pans: 4, rain: 3, temp: '18–31°C',
+    headline: 'Rains easing; the flood begins upstream',
+    water_note: 'Floodwater is peaking in the Panhandle in the north-west but has not reached the central Delta.',
+    dry_note: 'Grass is tall and the pans are still green; wildlife is still on the pans in good rain years.',
+    good: ['Nxai Pan', 'Makgadikgadi', 'Quiet camps between seasons'],
+    watch: ['Tall grass can hide wildlife'],
+    go: ['nxai-pan', 'makgadikgadi-pans', 'tsodilo-hills'],
+  },
+  {
+    m: 4, name: 'April', short: 'Apr', water: 2, pans: 3, rain: 1, temp: '15–30°C',
+    headline: 'Turning point between wet and dry',
+    water_note: 'The flood is moving down through the Delta; water levels rising week by week.',
+    dry_note: 'The pans start to dry; zebra begin moving back west towards the Boteti River.',
+    good: ['Shoulder-season value', 'Clear air after the rains', 'A bit of both: water and dry country'],
+    watch: ['Variable year to year'],
+    go: ['okavango-delta', 'makgadikgadi-pans', 'nxai-pan'],
+  },
+  {
+    m: 5, name: 'May', short: 'May', water: 3, pans: 2, rain: 0, temp: '10–28°C',
+    headline: 'The flood arrives',
+    water_note: 'Water reaches the central Delta; mokoro trips become possible in more areas.',
+    dry_note: 'The pans dry out and turn silver. Zebra gather on the Boteti River.',
+    good: ['Mokoro season begins', 'Cool, comfortable days', 'Dry-season pan sleep-outs start'],
+    watch: ['Nights get cold'],
+    go: ['okavango-delta', 'moremi', 'makgadikgadi-pans'],
+  },
+  {
+    m: 6, name: 'June', short: 'Jun', water: 4, pans: 2, rain: 0, temp: '6–25°C',
+    headline: 'Floods near the peak in the dry winter',
+    water_note: 'High water across the Delta. Islands become distinct; wildlife walks in from the dry country.',
+    dry_note: 'Dry, clear and cold at night. Wildlife on the pans is around the Boteti River.',
+    good: ['Water camps and mokoro', 'Walking safaris', 'Star-filled pan nights'],
+    watch: ['Cold early mornings (bring layers)', 'Peak-season rates begin'],
+    go: ['okavango-delta', 'moremi', 'linyanti'],
+  },
+  {
+    m: 7, name: 'July', short: 'Jul', water: 5, pans: 1, rain: 0, temp: '6–25°C',
+    headline: 'Peak flood, peak season',
+    water_note: 'Usually the highest water in the Delta and near Maun. The classic Okavango picture.',
+    dry_note: 'The dry country is bare and game concentrates on permanent water: rivers, Delta, waterholes.',
+    good: ['Okavango Delta', 'Moremi', 'Linyanti', 'Chobe riverfront'],
+    watch: ['Book well ahead', 'Small camps fill first'],
+    go: ['okavango-delta', 'moremi', 'linyanti', 'chobe-riverfront'],
+  },
+  {
+    m: 8, name: 'August', short: 'Aug', water: 5, pans: 1, rain: 0, temp: '9–29°C',
+    headline: 'High water and gathering elephants',
+    water_note: 'Water still high in the Delta. Clear water and good mokoro conditions.',
+    dry_note: 'Elephant herds build up on the Chobe and Linyanti rivers.',
+    good: ['Mokoro and boating', 'Elephants on the rivers', 'Wild dog denning in some years'],
+    watch: ['Windy and dusty days'],
+    go: ['okavango-delta', 'linyanti', 'chobe-riverfront', 'savuti'],
+  },
+  {
+    m: 9, name: 'September', short: 'Sep', water: 4, pans: 1, rain: 0, temp: '14–33°C',
+    headline: 'Water receding, game at its most concentrated',
+    water_note: 'The Delta starts to shrink; mokoro still possible in deeper channels.',
+    dry_note: 'Very dry inland; animals move to the last water. Excellent game viewing on the rivers.',
+    good: ['Chobe riverfront', 'Linyanti', 'Savuti predators', 'Moremi'],
+    watch: ['Getting hot by midday'],
+    go: ['chobe-riverfront', 'linyanti', 'savuti', 'moremi'],
+  },
+  {
+    m: 10, name: 'October', short: 'Oct', water: 3, pans: 0, rain: 1, temp: '18–36°C',
+    headline: 'The hottest month, and the most dramatic',
+    water_note: 'Water levels falling; boat and mokoro areas shrink. Lagoons draw big herds.',
+    dry_note: 'Dry country at its harshest. Wildlife stays close to water; tension between predators and prey.',
+    good: ['Elephants on the rivers', 'Predator action', 'Photography in hard light and dust'],
+    watch: ['Heat (often above 35°C)', 'Choose camps with shade and a pool'],
+    go: ['linyanti', 'chobe-riverfront', 'savuti', 'moremi'],
+  },
+  {
+    m: 11, name: 'November', short: 'Nov', water: 2, pans: 2, rain: 2, temp: '19–34°C',
+    headline: 'First rains and new life',
+    water_note: 'Delta water low; land-based camps work best.',
+    dry_note: 'First storms arrive. Impala and tsessebe start giving birth; the bush turns green within days.',
+    good: ['Impala lambing', 'Return of migrant birds', 'Green-season rates begin at many camps'],
+    watch: ['Hot and humid before storms', 'Rain timing varies'],
+    go: ['savuti', 'linyanti', 'moremi', 'makgadikgadi-pans'],
+  },
+  {
+    m: 12, name: 'December', short: 'Dec', water: 1, pans: 4, rain: 4, temp: '19–32°C',
+    headline: 'The pans begin to green',
+    water_note: 'Delta at low water; a lush, quiet time for land-based Delta camps.',
+    dry_note: 'Rains bring grazers back onto the Nxai Pan and Makgadikgadi grasslands.',
+    good: ['Nxai Pan', 'Makgadikgadi', 'Birding', 'Quiet camps'],
+    watch: ['Thunderstorms', 'Holiday dates book early'],
+    go: ['nxai-pan', 'makgadikgadi-pans', 'central-kalahari'],
+  },
+];
