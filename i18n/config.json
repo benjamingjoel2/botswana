@@ -1,0 +1,16 @@
+{
+  "out": "dist",
+  "siteUrl": "https://mokorojourneys.tourground.com",
+  "locales": ["fr", "de", "es"],
+  "default": "en",
+  "htmlLang": { "en": "en-GB", "fr": "fr", "de": "de", "es": "es" },
+  "ogLocale": { "fr": "fr_FR", "de": "de_DE", "es": "es_ES" },
+  "jsFiles": [],
+  "skipPages": [],
+  "noAlternates": ["404.html"],
+  "keep": [
+    "Mokoro Journeys",
+    "mokorojourneys@tourground.com",
+    "EN", "FR", "DE", "ES", "English", "Français", "Deutsch", "Español"
+  ]
+}

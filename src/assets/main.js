@@ -19,7 +19,7 @@
     var setMenu = function (open) {
       menu.hidden = !open;
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.querySelector('.nav-toggle-text').textContent = open ? 'Close' : 'Menu';
+      toggle.querySelector('.nav-toggle-text').textContent = open ? toggle.dataset.labelClose : toggle.dataset.labelOpen;
       document.body.classList.toggle('menu-open', open);
       if (open) menu.querySelector('a').focus();
     };
@@ -108,14 +108,14 @@
       var endpoint = form.dataset.endpoint;
 
       if (endpoint) {
-        status.textContent = 'Sending…';
+        status.textContent = form.dataset.labelSending;
         fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
           .then(function (r) {
             if (!r.ok) throw new Error(r.status);
-            location.href = '/enquire/thanks/';
+            location.href = form.dataset.thanks;
           })
           .catch(function () {
-            status.textContent = 'Sorry, that did not send. Please email us at ' + form.dataset.email + '.';
+            status.textContent = form.dataset.labelError;
           });
         return;
       }
@@ -132,7 +132,7 @@
       location.href = 'mailto:' + form.dataset.email +
         '?subject=' + encodeURIComponent(form.dataset.subject) +
         '&body=' + encodeURIComponent(lines.join('\n'));
-      status.textContent = 'Your email app should open with the enquiry filled in. Please press send there.';
+      status.textContent = form.dataset.labelMailto;
     });
   }
 })();
