@@ -595,7 +595,10 @@ ${c.pageHead('00', 'Enquire', raw('Tell us about <em>your trip.</em>'), 'A few d
 <div class="wrap section-sm two-col">
   <form class="enquiry" id="enquiry-form" method="post"
     action="${endpoint || `mailto:${contact.email}`}" ${endpoint ? '' : raw('enctype="text/plain"')}
-    data-endpoint="${endpoint}" data-email="${contact.email}" data-subject="Safari enquiry: ${brand.name}">
+    data-endpoint="${endpoint}" data-email="${contact.email}" data-subject="Safari enquiry: ${brand.name}"
+    data-thanks="/enquire/thanks/" data-label-sending="Sending…"
+    data-label-error="Sorry, that did not send. Please email us at ${contact.email}."
+    data-label-mailto="Your email app should open with the enquiry filled in. Please press send there.">
     <fieldset>
       <legend><span class="mono">01</span> About you</legend>
       <div class="field-row">
@@ -778,7 +781,7 @@ ${raw(`
   <h2>Local storage we use</h2>
   <p>This website does not use local storage.</p>
   <h2>Analytics and third parties</h2>
-  <p>We do not use analytics, advertising or social-media tracking on this website. Photographs are loaded from Unsplash’s image servers, which receive the standard technical information (such as your IP address) that any website receives when it delivers an image; Unsplash does not set cookies through these images. Fonts are served from our own website.</p>
+  <p>We do not use analytics, advertising or social-media tracking on this website. Photographs are loaded from our image delivery provider, which receives the standard technical information (such as your IP address) that any website receives when it delivers an image; it does not set cookies through these images. Fonts are served from our own website.</p>
   <h2>Consent and how to withdraw it</h2>
   <p>Because this website sets no cookies and stores nothing in your browser, there is nothing to consent to and no cookie banner. If that ever changes, we will ask for your consent first and you will be able to change your choice at any time.</p>
   <p>You can clear anything a website has stored in your browser at any time by clearing its site data (usually under Settings, then Privacy, then Cookies and site data), or block cookies entirely in your browser settings. This website will work exactly the same.</p>

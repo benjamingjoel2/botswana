@@ -4,9 +4,10 @@
   "private": true,
   "description": "Static travel website for private, low-impact safaris in Botswana.",
   "scripts": {
-    "build": "node build.js",
-    "start": "node build.js && node serve.js",
-    "check": "node build.js && node scripts/check.js"
+    "build": "node build.js && node scripts/i18n.mjs",
+    "start": "npm run build && node serve.js",
+    "check": "node build.js && node scripts/i18n.mjs check && node scripts/check.js",
+    "i18n:extract": "node build.js && node scripts/i18n.mjs extract"
   },
   "engines": { "node": ">=18" }
 }

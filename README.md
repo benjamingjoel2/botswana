@@ -119,6 +119,30 @@ A static site can't send email by itself. Two options:
   legs, a table of distances and estimated flying times, and the 20 kg soft-bag
   luggage rule.
 
+## Languages
+
+The site is in English (default, at the normal URLs) plus French, German and
+Spanish under `/fr/`, `/de/` and `/es/`. Every locale is plain pre-rendered
+HTML; there is no translation code in the browser.
+
+- `npm run build` runs `node build.js` (English into `dist/`) and then
+  `node scripts/i18n.mjs`, which writes `dist/fr/`, `dist/de/` and `dist/es/`
+  from the English pages using the dictionaries in `i18n/{fr,de,es}.json`
+  (`{ "English text": "translation" }`). It also points internal links at the
+  same language, fills the EN · FR · DE · ES selector (header and mobile menu,
+  at the `<!--i18n:selector-->` markers in `src/templates/layout.js`), sets
+  `<html lang>`, adds canonical and hreflang alternates (en, fr, de, es,
+  x-default) and lists every locale in `sitemap.xml`.
+- Keys containing markup, such as `Water <em>country.</em>`, translate a whole
+  heading at once (for headings whose parts cannot be translated one by one).
+- Text that `main.js` shows (menu label, form status messages) comes from
+  `data-label-*` attributes in the HTML, so it is translated with the page.
+- After changing any English text, run `npm run i18n:extract` to refresh
+  `i18n/strings.json`, add the new strings to the three dictionaries, and run
+  `npm run check`: it fails if any string is missing a translation.
+- Settings (locales, site URL, strings never to translate) are in
+  `i18n/config.json`.
+
 ## Quality checks
 
 - `npm run check` checks internal links, image alt text, headings and leaked

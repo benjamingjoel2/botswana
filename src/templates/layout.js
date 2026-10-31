@@ -40,6 +40,7 @@ ${config.fonts.preload.map((f) => html`<link rel="preload" href="${f}" as="font"
 <link rel="stylesheet" href="${config.assets.css}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="${config.assets.js}" defer></script>
+${path === '/' ? raw(`<script type="application/ld+json">${JSON.stringify(orgJsonLd()).replace(/</g, '\\u003c')}</script>`) : ''}
 </head>
 <body class="${overlay ? 'has-overlay' : ''}">
 <a class="skip" href="#main">Skip to content</a>
@@ -49,8 +50,9 @@ ${config.fonts.preload.map((f) => html`<link rel="preload" href="${f}" as="font"
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>${NAV.map(([href, label]) => html`<li><a href="${href}"${current(href)}>${label}</a></li>`)}</ul>
     </nav>
+    <!--i18n:selector:header-->
     <a class="header-cta" href="/enquire/"${current('/enquire/')}>Enquire</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-text">Menu</span></button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" data-label-open="Menu" data-label-close="Close"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-text">Menu</span></button>
   </div>
 </header>
 <div class="menu" id="menu" hidden>
@@ -60,6 +62,7 @@ ${config.fonts.preload.map((f) => html`<link rel="preload" href="${f}" as="font"
       <li><a href="/enquire/"${current('/enquire/')}><span class="mono">08</span>Enquire</a></li>
     </ol>
   </nav>
+  <!--i18n:selector:menu-->
   <p class="menu-contact mono"><a href="mailto:${contact.email}">${contact.email}</a></p>
 </div>
 <main id="main">
@@ -98,6 +101,25 @@ ${raw(String(body))}
 </footer>
 </body>
 </html>`}`;
+}
+
+// Structured data for the business (home page). No phone, by owner decision.
+function orgJsonLd() {
+  const { brand, contact, siteUrl } = config;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: brand.name,
+    url: siteUrl + '/',
+    email: contact.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'InnoSpace, Ground Floor, The Hub @ iTowers, CBD Plot 54368',
+      addressLocality: 'Gaborone',
+      addressCountry: 'BW',
+    },
+    areaServed: 'Botswana',
+  };
 }
 
 // Preload the page's hero (the one image marked fetchpriority="high") so the
