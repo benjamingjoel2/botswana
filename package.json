@@ -7,7 +7,8 @@
     "build": "node build.js && node scripts/i18n.mjs",
     "start": "npm run build && node serve.js",
     "check": "node build.js && node scripts/i18n.mjs check && node scripts/check.js",
-    "i18n:extract": "node build.js && node scripts/i18n.mjs extract"
+    "i18n:extract": "node build.js && node scripts/i18n.mjs extract",
+    "cf-pages": "npm run build && cp cloudflare/_headers cloudflare/_redirects dist/"
   },
   "engines": { "node": ">=18" }
 }
