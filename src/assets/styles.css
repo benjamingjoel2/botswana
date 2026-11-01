@@ -471,7 +471,8 @@ body.menu-open .site-header { background: var(--night); color: var(--sand); bord
 
 /* ---------------------------------------------------------- tables ---- */
 
-.table-wrap { overflow-x: auto; }
+.table-wrap, .legal-table { overflow-x: auto; }
+.legal-table { margin: 1.5rem 0; }
 table { border-collapse: collapse; width: 100%; font-size: .95rem; }
 caption { text-align: left; font: 400 1.6rem var(--font-display); margin-bottom: .8rem; }
 th, td { text-align: left; padding: .7rem .6rem .7rem 0; border-bottom: 1px solid var(--dune); vertical-align: top; }
