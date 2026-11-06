@@ -1,5 +1,6 @@
 const { html, raw } = require('../lib/html');
 const config = require('../../site.config');
+const photos = require('../data/photos');
 
 const NAV = [
   ['/destinations/', 'Destinations'],
@@ -69,38 +70,43 @@ ${path === '/' ? raw(`<script type="application/ld+json">${JSON.stringify(orgJso
 ${raw(String(body))}
 </main>
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <p class="footer-claim">${brand.tagline}</p>
-      <a class="btn btn-light" href="/enquire/"><span>Start an enquiry</span><span class="btn-disc" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
-    </div>
-    <div class="footer-grid">
-      <div>
-        <h2 class="footer-h mono">Contact</h2>
-        <p><a href="mailto:${contact.email}">${contact.email}</a><br>
-        ${contact.office}</p>
-        <p class="footer-muted">${contact.hours}</p>
-      </div>
-      <div>
-        <h2 class="footer-h mono">Explore</h2>
-        <ul class="footer-links">${NAV.map(([href, label]) => html`<li><a href="${href}">${label}</a></li>`)}</ul>
-      </div>
-      <div>
-        <h2 class="footer-h mono">Small print</h2>
-        <ul class="footer-links">
-          <li><a href="/privacy/">Privacy policy</a></li>
-          <li><a href="/terms/">Booking terms</a></li>
-          <li><a href="/cookies/">Cookie policy</a></li>
-        </ul>
-        <p class="footer-muted">Sample itineraries and placeholder camp names are for illustration; details are confirmed when you book.</p>
-      </div>
+  <div class="footer-band">
+    ${raw(footerBandImg())}
+    <div class="wrap footer-band-inner">
+      <p class="footer-band-line">Plan a quiet safari.</p>
+      <a class="btn btn-light" href="/enquire/">Start an enquiry</a>
     </div>
   </div>
-  <p class="footer-mark" aria-hidden="true">${brand.name}</p>
-  <div class="wrap footer-small mono"><p>© ${new Date().getFullYear()} ${brand.name}</p><p>${brand.shortName} · Botswana</p></div>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="/">${raw(logoMark())}<span>${brand.name}</span></a>
+      <p class="footer-muted">${brand.tagline}</p>
+      <p><a href="mailto:${contact.email}">${contact.email}</a><br>${contact.office}</p>
+    </div>
+    <div>
+      <h2 class="footer-h mono">Explore</h2>
+      <ul class="footer-links">${NAV.map(([href, label]) => html`<li><a href="${href}">${label}</a></li>`)}</ul>
+    </div>
+    <div>
+      <h2 class="footer-h mono">Small print</h2>
+      <ul class="footer-links">
+        <li><a href="/privacy/">Privacy policy</a></li>
+        <li><a href="/terms/">Booking terms</a></li>
+        <li><a href="/cookies/">Cookie policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-small"><p>© ${new Date().getFullYear()} ${brand.name}</p><p>Sample itineraries and placeholder camp names are for illustration; details are confirmed when you book.</p></div>
 </footer>
 </body>
 </html>`}`;
+}
+
+// Short photo strip at the top of the footer (lazy, fixed aspect, no layout shift).
+function footerBandImg() {
+  const p = photos['okavango-3'];
+  const u = (w, h) => `${p.src}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
+  return html`<img class="footer-band-img" src="${u(1600, 480)}" srcset="${u(800, 400)} 800w, ${u(1600, 480)} 1600w, ${u(2400, 640)} 2400w" sizes="100vw" width="1600" height="480" alt="${p.alt}" loading="lazy" decoding="async">`.toString();
 }
 
 // Structured data for the business (home page). No phone, by owner decision.

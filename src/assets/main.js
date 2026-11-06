@@ -72,23 +72,6 @@
     show(root.dataset.initial || 1);
   });
 
-  // Flying page: switch journey routes on the map.
-  document.querySelectorAll('[data-route-switch]').forEach(function (root) {
-    var chips = root.querySelectorAll('[data-show-route]');
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var slug = chip.dataset.showRoute;
-        chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
-        root.querySelectorAll('[data-route-panel]').forEach(function (p) {
-          p.classList.toggle('is-active', p.dataset.routePanel === slug);
-        });
-        root.querySelectorAll('.m-route').forEach(function (g) {
-          g.classList.toggle('is-active', g.dataset.route === slug);
-        });
-      });
-    });
-  });
-
   // Enquiry form: prefill from ?journey= / ?place=, then submit.
   var form = document.getElementById('enquiry-form');
   if (form) {

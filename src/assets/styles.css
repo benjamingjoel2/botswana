@@ -48,8 +48,8 @@ em { font-style: italic; }
 
 .mono { font: 500 .72rem/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
 .display, .h-xl, .h-lg, .statement, .intro { font-family: var(--font-display); font-weight: 400; }
-.display { font-size: clamp(3rem, 8.5vw, 8.5rem); line-height: .92; letter-spacing: -.015em; margin: 0 0 .25em; }
-.display-hero { font-size: clamp(3.6rem, 12vw, 12.5rem); line-height: .86; }
+.display { font-size: clamp(2.6rem, 6vw, 5.5rem); line-height: .92; letter-spacing: -.015em; margin: 0 0 .25em; }
+.display-hero { font-size: clamp(2.8rem, 6.6vw, 6rem); line-height: .92; }
 .h-xl { font-size: clamp(2.5rem, 5.6vw, 5.2rem); line-height: .98; letter-spacing: -.01em; margin-bottom: .35em; }
 .h-lg { font-size: clamp(2rem, 3.4vw, 3.1rem); line-height: 1.02; margin-bottom: .5em; }
 .statement { font-size: clamp(1.9rem, 4.2vw, 3.9rem); line-height: 1.1; letter-spacing: -.01em; max-width: 26ch; margin: 0 0 1.2em; }
@@ -73,18 +73,16 @@ em { font-style: italic; }
 /* --------------------------------------------------------- buttons ---- */
 
 .btn {
-  display: inline-flex; align-items: center; gap: .9rem; padding: .45rem .45rem .45rem 1.3rem; min-height: 3rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .7rem 1.4rem; min-height: 3rem;
   border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: var(--sand);
   font: 500 .98rem/1 var(--font-body); text-decoration: none; cursor: pointer; transition: background .3s, color .3s;
 }
-.btn-disc { display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--sand); color: var(--ink); transition: transform .4s var(--ease); }
-.btn:hover .btn-disc { transform: rotate(45deg); }
+.btn:hover { background: var(--inkSoft); border-color: var(--inkSoft); }
 .btn-light { background: var(--sand); color: var(--ink); border-color: var(--sand); }
-.btn-light .btn-disc { background: var(--ink); color: var(--sand); }
+.btn-light:hover { background: var(--white); border-color: var(--white); }
 .btn-ghost { background: transparent; color: var(--sand); border-color: var(--sand); }
-.btn-ghost .btn-disc { background: var(--sand); color: var(--ink); }
 .btn-outline { background: transparent; color: var(--ink); }
-.btn-outline .btn-disc { background: var(--ink); color: var(--sand); }
+.btn-ghost:hover, .btn-outline:hover { background: var(--sand); color: var(--ink); border-color: var(--sand); }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 
 /* ---------------------------------------------------------- header ---- */
@@ -238,7 +236,7 @@ body.menu-open .site-header { background: var(--night); color: var(--sand); bord
 .lean-water { color: var(--floodBright); }
 .lean-dry { color: var(--grass); }
 .lean-both { color: var(--sand); }
-.month-name { font: 400 clamp(3.6rem, 10vw, 8.5rem)/.9 var(--font-display); letter-spacing: -.02em; margin: 0; }
+.month-name { font: 400 clamp(2.6rem, 6vw, 5.5rem)/.9 var(--font-display); letter-spacing: -.02em; margin: 0; }
 .month-headline { font: 400 clamp(1.4rem, 2.4vw, 2rem)/1.2 var(--font-display); font-style: italic; margin: .5rem 0 0; color: var(--sand); }
 .month-facts { display: flex; gap: 2.5rem; margin: 0; }
 .month-facts dt { color: var(--stone); }
@@ -260,8 +258,8 @@ body.menu-open .site-header { background: var(--night); color: var(--sand); bord
 .meter-value { font-weight: 600; font-size: .9rem; }
 .month-go { margin: 2rem 0 0; padding-top: 1.25rem; border-top: 1px solid rgba(243, 236, 223, .2); display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
 .month-go .mono { color: var(--stone); margin-right: .5rem; }
-.month-go a { border: 1px solid rgba(243, 236, 223, .45); border-radius: 999px; padding: .4rem .95rem; text-decoration: none; }
-.month-go a:hover { background: var(--sand); color: var(--ink) !important; }
+.month-go a { text-decoration: underline; text-underline-offset: .2em; }
+.month-go a:hover { text-decoration-thickness: 2px; }
 
 /* ---------------------------------------------------- destinations ---- */
 
@@ -298,10 +296,6 @@ body.menu-open .site-header { background: var(--night); color: var(--sand); bord
   .dest-thumb { width: 5.5rem; height: 3.8rem; }
   .dest-kind, .dest-coords { display: block; }
 }
-.split-map .dest-row { grid-template-columns: 2rem 3.5rem minmax(0, 1fr) 1.5rem; }
-.split-map .dest-kind, .split-map .dest-coords { display: none; }
-.split-map .dest-thumb { width: 3.5rem; height: 2.6rem; }
-.split-map .dest-name { font-size: clamp(1.5rem, 2.4vw, 2.1rem); }
 
 /* -------------------------------------------------------- journeys ---- */
 
@@ -342,31 +336,20 @@ body.menu-open .site-header { background: var(--night); color: var(--sand); bord
 
 .codes { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .5rem clamp(1rem, 3vw, 3rem); margin: 0 0 2.5rem; }
 .codes > span:not(.code-dash) { display: flex; flex-direction: column; }
-.code { font: 400 clamp(4.6rem, 17vw, 16rem)/.82 var(--font-display); letter-spacing: -.02em; }
+.code { font: 400 clamp(2.4rem, 5vw, 4.5rem)/.9 var(--font-display); letter-spacing: -.02em; }
 .codes .mono { color: var(--stone); margin-top: .6rem; }
-.code-dash { font: 400 clamp(4.6rem, 17vw, 16rem)/.82 var(--font-display); color: var(--ochreBright); }
-.split-map { display: grid; gap: 2.5rem; }
-@media (min-width: 1000px) { .split-map { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 4rem; align-items: start; } }
-.split-map > *, .two-col > *, .two-even > * { min-width: 0; }
-.map-card { background: var(--sand); border-radius: 8px; padding: .5rem; color: var(--ink); }
-.map-card .small { padding: .5rem .5rem 0; margin: 0; }
+.code-dash { font: 400 clamp(2.4rem, 5vw, 4.5rem)/.9 var(--font-display); color: var(--ochreBright); }
+.two-col > *, .two-even > * { min-width: 0; }
 .sticky { position: sticky; top: calc(var(--header-h) + 1rem); }
 
-.route-tabs { display: none; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
-.js .route-tabs { display: flex; }
-.chip { display: inline-flex; gap: .6rem; align-items: center; font: 500 .95rem var(--font-body); padding: .55rem 1.1rem; border-radius: 999px; border: 1px solid rgba(243, 236, 223, .5); background: transparent; color: var(--sand); cursor: pointer; min-height: 44px; }
-.chip .mono { color: var(--stone); }
-.chip[aria-pressed="true"] { background: var(--sand); color: var(--ink); border-color: var(--sand); }
-.chip[aria-pressed="true"] .mono { color: var(--inkSoft); }
-.route-panel { margin-bottom: 1.5rem; }
-.js .route-panel { display: none; }
-.js .route-panel.is-active { display: block; }
+.route-panel { margin-bottom: 2.5rem; }
+.route-panels, .route-wrap, .flying-intro { max-width: 52rem; }
 
 /* Luggage rule: a light card that works on sand and on night */
 .luggage { display: grid; gap: 1.25rem 2rem; background: var(--white); color: var(--ink); border-radius: 8px; padding: clamp(1.4rem, 3vw, 2.25rem); margin: 2rem 0; }
 @media (min-width: 640px) { .luggage { grid-template-columns: auto 1fr; } }
 .luggage-figure { display: flex; align-items: flex-start; gap: .3rem; color: var(--papyrus); }
-.luggage-kg { font: 400 clamp(5rem, 10vw, 8rem)/.8 var(--font-display); letter-spacing: -.03em; }
+.luggage-kg { font: 400 clamp(3.5rem, 6vw, 5rem)/.8 var(--font-display); letter-spacing: -.03em; }
 .luggage-unit { padding-top: .4rem; }
 .luggage .label { color: var(--ink); margin-bottom: 1rem; }
 .luggage .label-n { color: var(--ochre); }
@@ -505,51 +488,23 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--flood); out
 
 /* ---------------------------------------------------------- footer ---- */
 
-.site-footer { background: var(--night); color: var(--sand); padding-top: clamp(4rem, 8vw, 6rem); overflow: hidden; }
+.site-footer { background: var(--night); color: var(--sand); overflow: hidden; }
 .site-footer a:not(.btn) { color: var(--sand); }
-.footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 2rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(243, 236, 223, .2); }
-.footer-claim { font: 400 clamp(1.8rem, 3.4vw, 3rem)/1.1 var(--font-display); max-width: 24ch; margin: 0; }
-.footer-grid { display: grid; gap: 2.5rem; padding: 3rem 0; }
-@media (min-width: 760px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+.footer-band { position: relative; isolation: isolate; height: clamp(11rem, 22vw, 17rem); display: flex; align-items: center; }
+.footer-band-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.footer-band::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(20, 18, 14, .78), rgba(20, 18, 14, .35)); }
+.footer-band-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; width: 100%; }
+.footer-band-line { font: 400 clamp(1.7rem, 3vw, 2.6rem)/1.1 var(--font-display); margin: 0; color: var(--sand); }
+.footer-grid { display: grid; gap: 2.25rem; padding: clamp(2.5rem, 5vw, 3.5rem) var(--gutter) 2.5rem; }
+@media (min-width: 760px) { .footer-grid { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); } }
+.footer-brand .logo { margin-bottom: 1rem; }
+.footer-brand p { margin: 0 0 .75rem; max-width: 34ch; }
 .footer-h { color: var(--stone); margin-bottom: 1rem; }
 .footer-links { list-style: none; margin: 0; padding: 0; }
 .footer-links li { margin-bottom: .4rem; }
 .footer-muted { color: var(--stone); font-size: .9rem; }
-.footer-mark { font: 400 clamp(3rem, 13.2vw, 15rem)/.8 var(--font-display); letter-spacing: -.03em; white-space: nowrap; text-align: center; margin: 0; padding: 0 0 .1em; color: var(--sand); }
-.footer-small { display: flex; justify-content: space-between; gap: 1rem; color: var(--stone); padding-top: 1.25rem; padding-bottom: 1.5rem; border-top: 1px solid rgba(243, 236, 223, .2); }
+.footer-small { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; color: var(--stone); font-size: .8rem; padding-top: 1.1rem; padding-bottom: 1.4rem; border-top: 1px solid rgba(243, 236, 223, .2); }
 .footer-small p { margin: 0; }
-
-/* ------------------------------------------------------------- map ---- */
-
-.route-map { width: 100%; height: auto; display: block; background: var(--floodLight); border-radius: 4px; font-family: var(--font-body); }
-.m-outside { fill: var(--sandDeep); }
-.m-country { fill: var(--sand); stroke: var(--inkSoft); stroke-width: 1.2; stroke-dasharray: 6 4; }
-.m-park { fill: var(--papyrusLight); opacity: .6; stroke: var(--papyrus); stroke-width: 1; stroke-dasharray: 2 3; }
-.m-delta { fill: var(--floodLight); stroke: var(--flood); stroke-width: 1; }
-.m-river { fill: none; stroke: var(--flood); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.m-river-wide { stroke-width: 4; }
-.m-river-thin { stroke-width: 1.6; }
-.m-pan { fill: var(--white); stroke: var(--dune); stroke-width: 1.5; }
-.m-country-label { font: 500 12px var(--font-mono); letter-spacing: .25em; fill: var(--inkSoft); }
-.m-botswana { font-size: 14px; fill: var(--ink); }
-.m-water-label { font: italic 15px var(--font-display); fill: var(--flood); }
-.m-label { font-size: 15px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--sand); stroke-width: 4px; stroke-linejoin: round; }
-.m-label-hub { font-weight: 700; }
-.m-place:hover .m-label, .m-place:focus .m-label { fill: var(--flood); text-decoration: underline; }
-.m-dot { stroke: var(--white); stroke-width: 2; }
-.m-dot-water { fill: var(--flood); }
-.m-dot-river { fill: var(--papyrus); }
-.m-dot-dry { fill: var(--ochre); }
-.m-hub { fill: var(--ink); stroke: var(--white); stroke-width: 2; }
-.m-route { display: none; }
-.m-route.is-active { display: inline; }
-.m-leg { fill: none; stroke: var(--ochre); stroke-width: 2.5; stroke-dasharray: 7 5; }
-.js .m-route.is-active .m-leg { animation: dash 1.6s linear infinite; }
-@keyframes dash { to { stroke-dashoffset: -24; } }
-.m-arrow { fill: var(--ochre); }
-.m-scale path { stroke: var(--ink); stroke-width: 1.5; }
-.m-scale text, .m-north text { font-size: 12px; fill: var(--ink); text-anchor: middle; }
-.m-north path { fill: var(--ink); }
 
 /* ---------------------------------------------------------- motion ---- */
 

@@ -65,9 +65,9 @@ Everything brand-specific is in **`site.config.js`**:
 | Page layouts and page text | `src/templates/pages.js` |
 | Header, footer, `<head>` | `src/templates/layout.js` |
 | Heroes, cards, chooser, luggage rule | `src/templates/components.js` |
-| Route map | `src/templates/map.js` |
+| Flight legs and distances | `src/templates/map.js` |
 | Styles | `src/assets/styles.css` |
-| Menu, chooser, map tabs, form | `src/assets/main.js` |
+| Menu, chooser, form | `src/assets/main.js` |
 
 After editing, run `npm run build` (or `npm start`) again.
 
@@ -114,10 +114,10 @@ A static site can't send email by itself. Two options:
   Delta flood level against how green the pans are, what the month is good
   for and where to go. Arrow keys move between months. Without JavaScript all
   twelve months are listed.
-- **Flying between camps** (`/flying/`, and on every journey page): a
-  schematic SVG map of northern Botswana with each journey's light-aircraft
-  legs, a table of distances and estimated flying times, and the 20 kg soft-bag
-  luggage rule.
+- **Flying between camps** (`/flying/`, and on every journey page): each
+  journey's light-aircraft legs in a table of distances and estimated flying
+  times, and the 20 kg soft-bag luggage rule. (No map illustrations, by owner
+  decision.)
 
 ## Languages
 
