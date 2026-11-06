@@ -4,7 +4,7 @@ const photos = require('../data/photos');
 const destinations = require('../data/destinations');
 const months = require('../data/months');
 const { journeys } = require('../data/journeys');
-const { routeMap, legTable, legs, place, bySlug } = require('./map');
+const { legTable, legs, place, bySlug } = require('./map');
 
 // ---------------------------------------------------------------- photos ---
 
@@ -19,10 +19,13 @@ function firstPhoto(keys = []) {
   return [].concat(keys).map((k) => photos[k]).find(Boolean);
 }
 
-function img(p, { sizes = '100vw', eager = false, cls = '' } = {}) {
+function img(p, { sizes = '100vw', eager = false, cls = '', ratio = '3/2' } = {}) {
+  const [rw, rh] = String(ratio).split('/').map(Number);
+  const w = 1200;
+  const h = Math.round((w * (rh || 2)) / (rw || 3));
   const widths = [480, 800, 1200, 1800, 2400];
   const srcset = widths.map((w) => `${imgUrl(p.src, w)} ${w}w`).join(', ');
-  return html`<img class="${cls}" src="${imgUrl(p.src, 1200)}" srcset="${srcset}" sizes="${sizes}" alt="${p.alt}"
+  return html`<img class="${cls}" src="${imgUrl(p.src, 1200)}" srcset="${srcset}" sizes="${sizes}" alt="${p.alt}" width="${w}" height="${h}"
     ${eager ? raw('fetchpriority="high"') : raw('loading="lazy"')} decoding="async">`;
 }
 
@@ -32,7 +35,7 @@ function photo(keys, { sizes = '100vw', ratio = '3/2', eager = false, cls = '', 
   const p = firstPhoto(keys);
   if (!p) return illustration(kind, cls, ratio);
   return html`<figure class="photo ${cls}" style="--ratio:${ratio}">
-  ${img(p, { sizes, eager })}
+  ${img(p, { sizes, eager, ratio })}
 </figure>`;
 }
 
@@ -60,9 +63,9 @@ const coords = (p) => `${dms(p.lat)}S ${dms(p.lon)}E`;
 const kindLabel = (kind) => ({ water: 'Water country', river: 'River country', dry: 'Dry country' })[kind];
 const pad = (n) => String(n).padStart(2, '0');
 
-// Pill button with an arrow disc, as used across the site.
+// One plain button (no boxed arrow disc).
 function btn(href, label, cls = '') {
-  return html`<a class="btn ${cls}" href="${href}"><span>${label}</span><span class="btn-disc" aria-hidden="true">${raw(arrow())}</span></a>`;
+  return html`<a class="btn ${cls}" href="${href}">${label}</a>`;
 }
 function arrow() {
   return '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
@@ -281,7 +284,6 @@ module.exports = {
   journeyStrip,
   kindLabel,
   chooser,
-  routeMap,
   legTable,
   legs,
   luggageRule,

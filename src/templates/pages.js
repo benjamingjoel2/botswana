@@ -163,13 +163,10 @@ function home() {
       <span class="code-dash" aria-hidden="true">—</span>
       <span><span class="code">BBK</span><span class="mono">Kasane · ${c.coords(kasane)}</span></span>
     </p>
-    <div class="split-map">
-      <div>
-        <p class="lede on-night">Most camps have their own sand airstrip. Small aircraft link them to each other and to the two gateways, flying low enough to count elephants.</p>
-        ${c.luggageRule()}
-        ${c.btn('/flying/', 'See every route', 'btn-light')}
-      </div>
-      <div class="map-card">${raw(c.routeMap({ id: 'home-map' }))}</div>
+    <div class="flying-intro">
+      <p class="lede on-night">Most camps have their own sand airstrip. Small aircraft link them to each other and to the two gateways, flying low enough to count elephants.</p>
+      ${c.luggageRule()}
+      ${c.btn('/flying/', 'See every route', 'btn-light')}
     </div>
   </div>
 </section>
@@ -202,9 +199,8 @@ function destinationsIndex() {
     body: html`
 ${c.hero({ photo: 'botswana-2', eyebrow: 'Destinations', title: raw('Where we go <em>in Botswana.</em>'), lede: 'Northern Botswana divides into water country, river country and dry country. The best trips usually combine two of them.', meta: '9 places · northern and central Botswana' })}
 <section class="section-sm">
-  <div class="wrap split-map">
+  <div class="wrap">
     <div>${c.label('00', 'All places')}${c.destinationIndex()}</div>
-    <div class="map-card sticky">${raw(c.routeMap({ id: 'dest-map', active: null }))}<p class="small">Schematic map; positions are approximate. Select a place to read more.</p></div>
   </div>
 </section>
 ${group('water', '01', raw('Water <em>country.</em>'), 'The Okavango Delta and Moremi: at their fullest in the dry winter months.')}
@@ -300,13 +296,10 @@ ${c.hero({ photo: j.photo, eyebrow: `Journey ${c.pad(i + 1)} · ${j.nights} nigh
   <div><p class="mono">Flights</p><p>${ls.length} short flights</p></div>
 </section>
 <section class="band-night section">
-  <div class="wrap split-map">
-    <div>
-      ${sectionHead('01', 'The route', raw('Camp to camp <em>by air.</em>'), null, 'on-night')}
-      ${c.legTable(j)}
-      <p class="small on-night">* Straight-line distances and estimated flying times. Real flights may stop at other airstrips on the way.</p>
-    </div>
-    <div class="map-card">${raw(c.routeMap({ id: `map-${j.slug}`, only: j.slug, active: j.slug }))}</div>
+  <div class="wrap route-wrap">
+    ${sectionHead('01', 'The route', raw('Camp to camp <em>by air.</em>'), null, 'on-night')}
+    ${c.legTable(j)}
+    <p class="small on-night">* Straight-line distances and estimated flying times. Real flights may stop at other airstrips on the way.</p>
   </div>
 </section>
 <section class="section">
@@ -402,23 +395,17 @@ function flying() {
       <span class="code-dash">—</span>
       <span><span class="code">BBK</span><span class="mono">Kasane · ${c.coords(kasane)}</span></span>
     </p>
-    <p class="lede on-night">Most camps in the Delta, Linyanti and Savuti have their own sand airstrip. Small aircraft link them to each other and to Maun and Kasane. Choose a journey to see its route.</p>
+    <p class="lede on-night">Most camps in the Delta, Linyanti and Savuti have their own sand airstrip. Small aircraft link them to each other and to Maun and Kasane.</p>
   </div>
 </header>
-<section class="band-night section-sm" data-route-switch>
+<section class="band-night section-sm">
   <div class="wrap">
-    <div class="route-tabs" role="group" aria-label="Choose a journey">
-      ${journeys.map((j, i) => html`<button type="button" class="chip" data-show-route="${j.slug}" aria-pressed="${i === 0 ? 'true' : 'false'}"><span class="mono">${c.pad(i + 1)}</span> ${j.name}</button>`)}
-    </div>
-    <div class="split-map">
-      <div class="route-panels">
-        ${journeys.map((j, i) => html`<div class="route-panel${i === 0 ? ' is-active' : ''}" data-route-panel="${j.slug}">
-          ${c.legTable(j)}
-          <p><a class="text-link on-night" href="/journeys/${j.slug}/">Day-by-day plan for ${j.name}</a></p>
-        </div>`)}
-        <p class="small on-night">* Distances are straight lines between approximate positions. Times assume a single-engine aircraft at about 260 km/h plus time to taxi, climb and land; real flights often stop at other airstrips to drop off or pick up guests.</p>
-      </div>
-      <div class="map-card">${raw(c.routeMap({ id: 'flying-map' }))}</div>
+    <div class="route-panels">
+      ${journeys.map((j) => html`<div class="route-panel">
+        ${c.legTable(j)}
+        <p><a class="text-link on-night" href="/journeys/${j.slug}/">Day-by-day plan for ${j.name}</a></p>
+      </div>`)}
+      <p class="small on-night">* Distances are straight lines between approximate positions. Times assume a single-engine aircraft at about 260 km/h plus time to taxi, climb and land; real flights often stop at other airstrips to drop off or pick up guests.</p>
     </div>
   </div>
 </section>
@@ -639,7 +626,7 @@ ${c.pageHead('00', 'Enquire', raw('Tell us about <em>your trip.</em>'), 'A few d
     </fieldset>
     <div class="field"><label for="f-message">Anything else?</label><textarea id="f-message" name="message" rows="5"></textarea></div>
     <p class="small">We use these details only to reply to your enquiry. We do not add you to a mailing list.</p>
-    <button class="btn" type="submit"><span>Send enquiry</span><span class="btn-disc" aria-hidden="true">${raw(c.arrow())}</span></button>
+    <button class="btn" type="submit">Send enquiry</button>
     <p class="form-status" role="status" aria-live="polite"></p>
     ${endpoint ? '' : html`<p class="small">This sends your enquiry using your email app. If nothing opens, write to us at <a href="mailto:${contact.email}">${contact.email}</a>.</p>`}
   </form>
