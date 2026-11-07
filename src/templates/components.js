@@ -1,5 +1,4 @@
 const { html, raw } = require('../lib/html');
-const config = require('../../site.config');
 const photos = require('../data/photos');
 const destinations = require('../data/destinations');
 const months = require('../data/months');
@@ -29,24 +28,15 @@ function img(p, { sizes = '100vw', eager = false, cls = '', ratio = '3/2' } = {}
     ${eager ? raw('fetchpriority="high"') : raw('loading="lazy"')} decoding="async">`;
 }
 
-// Responsive photo. When no verified photo exists for a place we
-// draw an illustration instead of using a photo from somewhere else.
-function photo(keys, { sizes = '100vw', ratio = '3/2', eager = false, cls = '', kind = 'water' } = {}) {
+// Responsive photo. Every slot is given a location-checked photo in photos.js.
+// If a key is ever missing, the slot is a plain neutral block (never artwork,
+// never a photo from somewhere else).
+function photo(keys, { sizes = '100vw', ratio = '3/2', eager = false, cls = '' } = {}) {
   const p = firstPhoto(keys);
-  if (!p) return illustration(kind, cls, ratio);
+  if (!p) return html`<figure class="photo photo-empty ${cls}" style="--ratio:${ratio}" aria-hidden="true"></figure>`;
   return html`<figure class="photo ${cls}" style="--ratio:${ratio}">
   ${img(p, { sizes, eager, ratio })}
 </figure>`;
-}
-
-function illustration(kind, cls, ratio) {
-  const c = config.palette;
-  const scenes = {
-    water: `<rect width="600" height="400" fill="${c.floodLight}"/><path d="M0 250 Q150 225 300 245 T600 238 V400 H0Z" fill="${c.papyrusLight}"/><path d="M0 285 Q160 270 300 285 T600 280 V400 H0Z" fill="${c.flood}" opacity=".85"/><path d="M200 300c40 10 120 10 160 0" stroke="${c.ink}" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M320 298 345 205" stroke="${c.ink}" stroke-width="3"/><circle cx="318" cy="246" r="7" fill="${c.ink}"/><path d="M318 253v38" stroke="${c.ink}" stroke-width="7" stroke-linecap="round"/>`,
-    river: `<rect width="600" height="400" fill="${c.floodLight}"/><path d="M0 220 Q300 200 600 225 V400 H0Z" fill="${c.dune}"/><path d="M0 270 Q300 255 600 275 V400 H0Z" fill="${c.flood}" opacity=".85"/>`,
-    dry: `<rect width="600" height="400" fill="${c.sandDeep}"/><circle cx="470" cy="110" r="38" fill="${c.ochreBright}" opacity=".75"/><path d="M0 260 Q300 245 600 262 V400 H0Z" fill="${c.sand}"/><g fill="${c.inkSoft}"><rect x="120" y="170" width="18" height="92"/><path d="M100 175 Q129 120 158 175Z"/></g>`,
-  };
-  return raw(`<figure class="photo illustration ${cls}" style="--ratio:${ratio}"><svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration (no location-verified photo yet)">${scenes[kind] || scenes.water}</svg></figure>`);
 }
 
 // ------------------------------------------------------------- small bits ---

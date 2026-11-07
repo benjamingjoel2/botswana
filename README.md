@@ -59,7 +59,7 @@ Everything brand-specific is in **`site.config.js`**:
 | Destinations (text, best months, rules, photos) | `src/data/destinations.js` |
 | "Water or dry?" month data | `src/data/months.js` |
 | Sample journeys, day-by-day plans, flight routes | `src/data/journeys.js` |
-| Stays (placeholder names) | `src/data/stays.js` |
+| Stays (described by place, no camp named yet) | `src/data/stays.js` |
 | Journal articles | `src/data/journal.js` |
 | Photos and credits | `src/data/photos.js` |
 | Page layouts and page text | `src/templates/pages.js` |
@@ -162,7 +162,7 @@ placeholder on the site that needs checking against a primary source. Also:
 
 - The legal pages (`/privacy/`, `/terms/`, `/cookies/`) are complete drafts;
   have a lawyer review them.
-- The camp names in `src/data/stays.js` are placeholders, labelled on the site.
+- The stays in `src/data/stays.js` describe the kind of camp per place; add real partner camp names (and their own photos) once agreements are signed.
   Real camps must show that real property (see `IMAGES-NEEDED.md`).
 
 ## Performance
