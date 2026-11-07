@@ -441,7 +441,6 @@ ${closing()}`,
 function stayCard(s) {
   const d = c.bySlug[s.place];
   return html`<article class="stay">
-  ${s.placeholder ? html`<p class="tag mono">Placeholder name</p>` : ''}
   <h3>${s.name}</h3>
   <p class="mono stay-meta"><a href="/destinations/${d.slug}/">${d.name}</a> · ${s.style}</p>
   <p>${s.text}</p>
@@ -457,7 +456,7 @@ function staysPage() {
     image: ogImage('moremi-5'),
     description: 'The kind of small, low-impact camps we use across Botswana.',
     body: html`
-${c.hero({ photo: 'moremi-5', eyebrow: 'Stays', title: raw('Small camps, <em>chosen carefully.</em>'), lede: 'The names below are placeholders that show the kind of place we choose. We will name our partner camps here once agreements are in place.', meta: 'Sunset, Moremi' })}
+${c.hero({ photo: 'moremi-5', eyebrow: 'Stays', title: raw('Small camps, <em>chosen carefully.</em>'), lede: 'The kind of camp we choose in each place. Your planner names the exact camp when your dates are set.', meta: 'Sunset, Moremi' })}
 <section class="section">
   <div class="wrap">
     ${c.label('01', 'What we look for')}

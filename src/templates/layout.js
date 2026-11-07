@@ -96,7 +96,7 @@ ${raw(String(body))}
       </ul>
     </div>
   </div>
-  <div class="wrap footer-small"><p>© ${new Date().getFullYear()} ${brand.name}</p><p>Sample itineraries and placeholder camp names are for illustration; details are confirmed when you book.</p></div>
+  <div class="wrap footer-small"><p>© ${new Date().getFullYear()} ${brand.name}</p><p>Itineraries are samples; camps and details are confirmed when you book.</p></div>
 </footer>
 </body>
 </html>`}`;

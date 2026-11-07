@@ -402,7 +402,8 @@ body.menu-open .site-header { background: var(--night); color: var(--sand); bord
 .aside .mono { color: var(--ochre); }
 
 .photo { margin: 0; }
-.photo img, .photo svg { display: block; width: 100%; height: auto; aspect-ratio: var(--ratio, 3/2); object-fit: cover; background: var(--sandDeep); border-radius: var(--radius); }
+.photo-empty { aspect-ratio: var(--ratio, 3/2); background: var(--sandDeep); border-radius: var(--radius); }
+.photo img { display: block; width: 100%; height: auto; aspect-ratio: var(--ratio, 3/2); object-fit: cover; background: var(--sandDeep); border-radius: var(--radius); }
 .photo figcaption { font-size: .75rem; color: var(--inkSoft); padding-top: .5rem; }
 .photo figcaption a { color: inherit; }
 .mosaic { display: grid; gap: 1rem; }
