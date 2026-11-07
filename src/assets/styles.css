@@ -50,6 +50,9 @@ em { font-style: italic; }
 .display, .h-xl, .h-lg, .statement, .intro { font-family: var(--font-display); font-weight: 400; }
 .display { font-size: clamp(2.6rem, 6vw, 5.5rem); line-height: .92; letter-spacing: -.015em; margin: 0 0 .25em; }
 .display-hero { font-size: clamp(2.8rem, 6.6vw, 6rem); line-height: .92; }
+/* Hero and page-head titles keep their original size (owner decision, 7 Nov 2026). */
+h1.display { font-size: clamp(3rem, 8.5vw, 8.5rem); }
+h1.display-hero { font-size: clamp(3.6rem, 12vw, 12.5rem); line-height: .86; }
 .h-xl { font-size: clamp(2.5rem, 5.6vw, 5.2rem); line-height: .98; letter-spacing: -.01em; margin-bottom: .35em; }
 .h-lg { font-size: clamp(2rem, 3.4vw, 3.1rem); line-height: 1.02; margin-bottom: .5em; }
 .statement { font-size: clamp(1.9rem, 4.2vw, 3.9rem); line-height: 1.1; letter-spacing: -.01em; max-width: 26ch; margin: 0 0 1.2em; }
